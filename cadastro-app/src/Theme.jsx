@@ -41,7 +41,7 @@ const getDesign = (mode) => createTheme({
             color: mode === 'dark' ? '#121212' : grey[800], // Cor do texto do input
           },
           '& .MuiInputLabel-root': {
-            color: mode === 'dark' ? grey[900] : grey[900], // borda input
+            color: mode === 'dark' ? grey[900] : grey[900], // Cor do rótulo do input
           },
           '& .MuiInput-underline:before': {
             borderBottomColor: mode === 'dark' ? grey[600] : grey[500], // Cor da borda inferior do input
@@ -55,10 +55,10 @@ const getDesign = (mode) => createTheme({
     MuiButton: {
       styleOverrides: {
         contained: {
-          backgroundColor: mode === 'dark' ? '#000000' : '#000000', // Cor de fundo do botão
+          backgroundColor: mode === 'dark' ? '#000000' : '#ff6600', // Cor de fundo do botão
           color: '#ffffff', // Cor do texto do botão
           '&:hover': {
-            backgroundColor: mode === 'dark' ? '#333333' : '#333333', // Cor do botão ao passar o mouse
+            backgroundColor: mode === 'dark' ? '#333333' : '#e65c00', // Cor do botão ao passar o mouse
           },
         },
       },

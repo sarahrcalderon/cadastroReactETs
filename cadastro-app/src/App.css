@@ -1,6 +1,3 @@
-/* index.css ou App.css */
-
-/* Garante que o html e o body ocupem toda a altura da tela */
 html, body {
     height: 100%;
     margin: 0;
@@ -25,7 +22,9 @@ html, body {
     border: none;
     outline: none;
   }
-  
+  .icon-sun {
+    color: #ff6600;/*  ícone de sol */
+  }
   button {
     cursor: pointer;
   }

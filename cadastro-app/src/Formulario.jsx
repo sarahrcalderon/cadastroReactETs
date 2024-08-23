@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Button, TextField, FormControl, FormLabel, FormHelperText, Typography } from '@mui/material';
+import { Button, TextField, FormControl, FormLabel, FormHelperText, Typography, Paper, InputAdornment } from '@mui/material';
 import PersonIcon from '@mui/icons-material/Person';
 import EmailIcon from '@mui/icons-material/Email';
 import LockIcon from '@mui/icons-material/Lock';
-import Paper from '@mui/material/Paper';
+import { useTheme } from '@mui/material/styles';
 
 const emailsIndisponiveis = ["teste@exemplo.com", "joao@exemplo.com", "maria@acme.net"];
 
@@ -19,6 +19,9 @@ const Formulario = () => {
     const [errors, setErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [showInfo, setShowInfo] = useState(false);
+
+    const theme = useTheme();
+    const mode = theme.palette.mode;
 
     const validate = () => {
         const errosDeValidacao = {};
@@ -36,9 +39,9 @@ const Formulario = () => {
             errosDeValidacao.senha = 'Senha é obrigatória';
         } else {
             if (form.senha.length < 8) errosDeValidacao.senha = 'Senha deve ter no mínimo 8 caracteres';
-            if (!/[a-z]/.test(form.senha)) errosDeValidacao.senha = '- Conter pelo menos 1 letra minúscula e maiúscula';
-            if (!/[A-Z]/.test(form.senha)) errosDeValidacao.senha = '';
-            if (!/[0-9]/.test(form.senha)) errosDeValidacao.senha = '- Conter pelo menos 1 número';
+            if (!/[a-z]/.test(form.senha)) errosDeValidacao.senha += '- Conter pelo menos 1 letra minúscula e maiúscula';
+            if (!/[A-Z]/.test(form.senha)) errosDeValidacao.senha += '- Conter pelo menos 1 letra maiúscula';
+            if (!/[0-9]/.test(form.senha)) errosDeValidacao.senha += '- Conter pelo menos 1 número';
         }
 
         if (form.confirmacaoSenha !== form.senha) {
@@ -100,7 +103,14 @@ const Formulario = () => {
                 onBlur={() => setShowInfo(false)}
                 error={Boolean(error)}
                 InputProps={{
-                    startAdornment: icon,
+                    startAdornment: (
+                        <InputAdornment
+                            position="start"
+                            sx={{ color: mode === 'dark' ? '#0A0909' : '#ff6600', mr: 1 }} // Cor dos ícones
+                        >
+                            {icon}
+                        </InputAdornment>
+                    ),
                 }}
                 placeholder={placeholder}
                 variant="outlined"
@@ -136,7 +146,7 @@ const Formulario = () => {
                 margin: '0 auto',
                 marginTop: '10%',
                 padding: '2rem',
-                backgroundColor: '#fff'
+                backgroundColor: mode === 'dark' ? '#0A0909' : '#fff', // Cor do fundo
             }}
         >
             <Typography variant="h4" component="h1" style={{ textAlign: 'center' }}>
