@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  php-backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8083:8083"
+    volumes:
+      - ./index.php:/var/www/html/index.php
+    environment:
+      - API_KEY=ECA1AB4CE8583613A2C759B445E98
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
