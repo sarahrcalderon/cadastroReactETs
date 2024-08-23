@@ -1,8 +1,8 @@
-// src/Formulario.jsx
-
 import React, { useState } from 'react';
-import { Button, Input, FormControl, FormLabel, FormHelperText, Typography } from '@mui/joy';
-import { Person as PersonIcon, Email as EmailIcon, Lock as LockIcon } from '@mui/icons-material';
+import { Button, TextField, FormControl, FormLabel, FormHelperText, Typography } from '@mui/material';
+import PersonIcon from '@mui/icons-material/Person';
+import EmailIcon from '@mui/icons-material/Email';
+import LockIcon from '@mui/icons-material/Lock';
 import Paper from '@mui/material/Paper';
 
 const emailsIndisponiveis = ["teste@exemplo.com", "joao@exemplo.com", "maria@acme.net"];
@@ -89,9 +89,9 @@ const Formulario = () => {
     };
 
     const inputCadastro = (label, name, type = "text", icon, placeholder, error) => (
-        <FormControl>
+        <FormControl style={{ marginBottom: '1rem' }}>
             <FormLabel>{label}</FormLabel>
-            <Input
+            <TextField
                 name={name}
                 type={type}
                 value={form[name]}
@@ -99,24 +99,23 @@ const Formulario = () => {
                 onFocus={() => setShowInfo(name === 'senha')}
                 onBlur={() => setShowInfo(false)}
                 error={Boolean(error)}
-                startDecorator={icon}
-                placeholder={placeholder}
-                sx={{ 
-                    fontSize: '0.8rem', 
-                    color: 'gray', 
-                    '&::placeholder': { color: 'text.secondary' } 
+                InputProps={{
+                    startAdornment: icon,
                 }}
+                placeholder={placeholder}
+                variant="outlined"
+                fullWidth
+                helperText={error}
             />
-            <FormHelperText>{error}</FormHelperText>
             {name === 'senha' && showInfo && (
                 <>
-                    <FormHelperText sx={{ fontSize: '0.75rem', color: 'text.secondary' }}>
+                    <FormHelperText style={{ fontSize: '0.75rem' }}>
                         - Senha deve ter no mínimo 8 caracteres.
                     </FormHelperText>
-                    <FormHelperText sx={{ fontSize: '0.75rem', color: 'text.secondary' }}>
+                    <FormHelperText style={{ fontSize: '0.75rem' }}>
                         - Conter pelo menos 1 letra minúscula e maiúscula.
                     </FormHelperText>
-                    <FormHelperText sx={{ fontSize: '0.75rem', color: 'text.secondary' }}>
+                    <FormHelperText style={{ fontSize: '0.75rem' }}>
                         - Conter pelo menos 1 número.
                     </FormHelperText>
                 </>
@@ -125,29 +124,31 @@ const Formulario = () => {
     );
 
     return (
-        <Paper elevation={3}
+        <Paper
+            elevation={3}
             component="form"
             onSubmit={handleSubmit}
-            sx={{
+            style={{
                 display: 'flex',
                 flexDirection: 'column',
-                gap: 1,
+                gap: '1rem',
                 maxWidth: '400px',
                 margin: '0 auto',
                 marginTop: '10%',
-                padding: '2rem'
+                padding: '2rem',
+                backgroundColor: '#fff'
             }}
         >
-            <Typography level="h4" component="h1" sx={{ textAlign: 'center' }}>
+            <Typography variant="h4" component="h1" style={{ textAlign: 'center' }}>
                 Formulário de Cadastro
             </Typography>
 
-            {inputCadastro('Nome', 'nome', 'text', <PersonIcon sx={{ fontSize: 19, color: '#315391' }} />, 'Nome', errors.nome)}
-            {inputCadastro('E-mail', 'email', 'email', <EmailIcon sx={{ fontSize: 18, color: '#315391' }} />, 'Digite seu e-mail', errors.email)}
-            {inputCadastro('Senha', 'senha', 'password', <LockIcon sx={{ fontSize: 18, color: '#315391' }} />, '********', errors.senha)}
-            {inputCadastro('Confirmação de Senha', 'confirmacaoSenha', 'password', <LockIcon sx={{ fontSize: 18, color: '#315391' }} />, '********', errors.confirmacaoSenha)}
+            {inputCadastro('Nome', 'nome', 'text', <PersonIcon />, 'Nome', errors.nome)}
+            {inputCadastro('E-mail', 'email', 'email', <EmailIcon />, 'Digite seu e-mail', errors.email)}
+            {inputCadastro('Senha', 'senha', 'password', <LockIcon />, '********', errors.senha)}
+            {inputCadastro('Confirmação de Senha', 'confirmacaoSenha', 'password', <LockIcon />, '********', errors.confirmacaoSenha)}
 
-            <Button type="submit" disabled={isSubmitting} variant="solid">
+            <Button type="submit" disabled={isSubmitting} variant="contained" color="primary">
                 Cadastrar
             </Button>
         </Paper>
