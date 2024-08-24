@@ -1,4 +1,4 @@
-import './styles.css';
-import App from './App';
+import './styles/index.css';
+import { initializeApp } from './App';
 
-App();
+initializeApp();

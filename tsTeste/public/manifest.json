@@ -1,0 +1,23 @@
+{
+    "name": "NitroNews",
+    "short_name": "NitroNews",
+    "description": "Crie uma melhor forma de gerenciar campanhas de email marketing usando a plataforma NitroNews",
+    "icons": [
+      {
+        "src": "/tsTeste/public/icons/sun.svg",
+        "sizes": "48x48",
+        "type": "image/svg+xml"
+      },
+      {
+        "src": "/tsTeste/public/icons/moon.svg",
+        "sizes": "48x48",
+        "type": "image/svg+xml"
+      }
+    ],
+ 
+    "start_url": "/",
+    "display": "standalone",
+    "theme_color": "#315391",
+    "background_color": "#ffffff"
+  }
+  

@@ -1,0 +1,11 @@
+:root {
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --background-color: #F2F2F2;
+    --primary-color: #121212;
+    --secondary-color: #ff6600;
+    --hover-color: #0056b3;
+    --error-color: #e64237;
+    --text-color: #0A0909;
+    --text-btn: #F2F2F2;
+    --input-focus-color: #121212;
+}

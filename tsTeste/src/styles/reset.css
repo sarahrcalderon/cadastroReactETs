@@ -1,0 +1,10 @@
+/* Resetando margens e paddings. Garantir uma base consistente para fontes e tamanhos de texto */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    font-size: 1.2rem;
+}

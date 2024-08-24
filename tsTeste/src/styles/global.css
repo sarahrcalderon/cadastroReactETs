@@ -1,0 +1,10 @@
+body {
+    font-family: var(--font-family);
+    background: linear-gradient(135deg, #f0f0f0 0%, #d9e3f0 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    color: var(--text-color);
+}
