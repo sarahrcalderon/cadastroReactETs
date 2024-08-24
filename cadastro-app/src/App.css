@@ -21,7 +21,11 @@ html, body {
   button, input {
     border: none;
     outline: none;
+   
   }
+
+
+ 
   .icon-sun {
     color: #ff6600;/*  ícone de sol */
   }

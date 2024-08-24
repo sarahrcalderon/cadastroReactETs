@@ -37,7 +37,7 @@ const getDesign = (mode) => createTheme({
       styleOverrides: {
         root: {
           '& .MuiInputBase-root': {
-            backgroundColor: mode === 'dark' ? grey[200] : '#ffffff', // Cor de fundo do input
+            backgroundColor:'#ffffff', // Cor de fundo do input
             color: mode === 'dark' ? '#121212' : grey[800], // Cor do texto do input
           },
           '& .MuiInputLabel-root': {

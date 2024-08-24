@@ -68,7 +68,7 @@ const Formulario = () => {
         setIsSubmitting(true);
 
         try {
-            const response = await fetch('URL_DO_BACKEND', {
+            const response = await fetch('http://localhost:8083/index.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -146,7 +146,7 @@ const Formulario = () => {
                 margin: '0 auto',
                 marginTop: '10%',
                 padding: '2rem',
-                backgroundColor: mode === 'dark' ? '#0A0909' : '#fff', // Cor do fundo
+                backgroundColor: mode === 'dark' ? '#121212' : '#fff', // Cor do fundo
             }}
         >
             <Typography variant="h4" component="h1" style={{ textAlign: 'center' }}>
@@ -158,7 +158,18 @@ const Formulario = () => {
             {inputCadastro('Senha', 'senha', 'password', <LockIcon />, '********', errors.senha)}
             {inputCadastro('Confirmação de Senha', 'confirmacaoSenha', 'password', <LockIcon />, '********', errors.confirmacaoSenha)}
 
-            <Button type="submit" disabled={isSubmitting} variant="contained" color="primary">
+            <Button
+                type="submit"
+                disabled={isSubmitting}
+                variant="contained"
+                sx={{
+                    backgroundColor: mode === 'dark' ? '#0A0909' : 'primary.main',
+                    color: '#fff',
+                    '&:hover': {
+                        backgroundColor: mode === 'dark' ? '#0A0909' : 'primary.dark',
+                    },
+                }}
+            >
                 Cadastrar
             </Button>
         </Paper>
