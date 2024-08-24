@@ -12,14 +12,22 @@ function handleChange(event: Event): void {
     form[target.name as keyof InputDadosCadastro] = target.value;
 }
 
-function createFormInput(name: keyof InputDadosCadastro, placeholder: string, type: string = 'text'): string {
+function createFormInput(id: string, placeholder: string, type = 'text', iconClass: string, isPassword = false) {
+    const iconHTML = iconClass ? `<i class="fas ${iconClass}"></i>` : '';
+    const togglePasswordHTML = isPassword 
+    ? `<i class="fas fa-eye toggle-password" id="toggle-${id}" onclick="togglePasswordVisibility('${id}')"></i>` 
+    : '';
+
     return `
         <div class="input-group">
-            <label for="${name}">${capitalizeFirstLetter(name)}</label>
-            <input type="${type}" name="${name}" placeholder="${placeholder}" value="${form[name]}" />
-            <div id="error-${name}" class="error-message"></div>
-        </div>
-    `;
+            <label for="${id}">${placeholder}</label>
+            <div class="input-wrapper">
+                ${iconHTML}
+                <input type="${type}" id="${id}" name="${id}" placeholder="${placeholder}">
+                ${togglePasswordHTML}
+            </div>
+            <div class="error-message" id="${id}-error"></div>
+        </div>`;
 }
 
 // Renderizar o formulário
@@ -28,17 +36,25 @@ function renderizacaoFormulario(): void {
     if (!container) return;
 
     container.innerHTML = `
-        <div class="container">
-            <h1 class="title">Formulário de Cadastro</h1>
-            <form id="registration-form">
-                ${createFormInput('nome', 'Nome')}
-                ${createFormInput('email', 'Digite seu e-mail', 'email')}
-                ${createFormInput('senha', '********', 'password')}
-                ${createFormInput('confirmacaoSenha', '********', 'password')}
-                <button type="submit" ${isSubmitting ? 'disabled' : ''}>Cadastrar</button>
-            </form>
-        </div>
-    `;
+    <div class="container">
+        <h1 class="title">Formulário de Cadastro</h1>
+        <form id="registration-form">
+            ${createFormInput('nome', 'Nome', 'text', 'fa-user')}
+            ${createFormInput('email', 'Digite seu e-mail', 'email', 'fa-envelope')}
+            ${createFormInput('senha', '********', 'password', 'fa-light fa-lock', true)}
+            ${createFormInput('confirmacaoSenha', '********', 'password', 'fa-light fa-lock', true)}
+            <button type="submit" ${isSubmitting ? 'disabled' : ''}>Cadastrar</button>
+        </form>
+    </div>`;
+    
+    function togglePasswordVisibility(id: string) {
+        const input = document.getElementById(id);
+        if (input) {
+            const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+            input.setAttribute('type', type);
+        }
+    }
+    
 
     const formElement = document.getElementById('registration-form');
     if (formElement) {

@@ -1,27 +1,68 @@
-.input-group {
-    margin-bottom: 1.5rem;
+.input-wrapper {
     position: relative;
+    display: flex;
+    align-items: center;
+}
+.input-wrapper i {
+    font-size: 16px; /* Ajuste o tamanho dos ícones conforme necessário */
 }
 
-.input-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: 500;
-    color: #555;
-    transition: color 0.3s;
+.input-wrapper input {
+    padding-right: 100px; 
+}
+
+.input-wrapper i.toggle-password {
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.input-wrapper .fas {
+    position: absolute;
+    left: 10px; 
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #888; 
+}
+
+.input-wrapper .toggle-password {
+    color: #9e9e9e; 
 }
 
 input[type="text"],
 input[type="email"],
 input[type="password"] {
     width: 100%;
-    padding: 0.75rem;
-    border: 2px solid var(--border-color);
+    padding: 0.75rem 0.75rem 0.75rem 2.5rem; /* Espaço para o ícone à esquerda */
+    border: 2px solid #ddd;
     border-radius: 6px;
-    box-sizing: border-box;
+
+    font-size: 1rem;
+
+}
+
+input[type="password"] {
+    padding-right: 2.5rem; 
+}
+
+
+input.error {
+    border-color: #f44336;
+}
+
+/* Error Message Styles */
+.error-message {
+    color: #f44336;
     font-size: 0.8rem;
-    transition: border-color 0.3s, box-shadow 0.3s;
-    outline: none;
+    margin-top: 0.25rem;
+}
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #aaa;
 }
 
 input:focus {
