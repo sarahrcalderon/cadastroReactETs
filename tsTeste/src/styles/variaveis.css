@@ -6,6 +6,56 @@
     --hover-color: #0056b3;
     --error-color: #e64237;
     --text-color: #0A0909;
+    --icon-color:#888;
+    --text-input: #777777c7;
     --text-btn: #F2F2F2;
-    --input-focus-color: #121212;
+    --input-focus-color: #ff6600;
+    --input-focus-color-dark: #000000;
+    --body-bg: #F2F2F2;
+    --sun-color-light: #ff6600; /* Cor do sol no modo claro */
+    --sun-color-dark: #a1a1a1;     /* Cor do sol no modo escuro */
+    --moon-color: #3d3d3d;   
+    --switch-color: #f3f3f3;
+   
+}
+.labelSwitch i.fa-sun {
+    order: 1;
+    font-size: 1rem;
+    color: var(--sun-color-light); 
+}
+.labelSwitch i.fa-moon {
+    order: 2;
+    font-size: 1rem;
+    color: var(--moon-color);
+}
+
+.dark-mode {
+    --background-color: #181818;
+    --primary-color: #F2F2F2;
+    --secondary-color: #000;
+    --hover-color: #0056b3;
+    --error-color: #e64237;
+    --text-color: #F2F2F2;
+    --icon-color:#888;
+    --text-input: #777777c7;
+    --text-btn: #F2F2F2;
+    --input-focus-color: #F2F2F2;
+    --body-bg: #121212;
+    --sun-color-dark: #888; 
+    --switch-color: #b8b8b8;
+    --input-focus-color-light: #000000; 
+    --input-focus-color-dark: #ff6600;
+}
+.dark-mode i.fa-sun {
+    color: var(--sun-color-dark); /* Cor do sol no modo escuro */
+}
+
+.dark-mode i.fa-moon {
+    color: var(--moon-color);
+}
+
+body {
+    background-color: var(--body-bg);
+   
+
 }

@@ -2,11 +2,10 @@
 <html lang="pt-br">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="/tsTeste/public/favicon.svg" />
+    <link rel="icon" href="/tsTeste/src/favicon.svg" />
     <link rel="manifest" href="/tsTeste/public/manifest.json" />
     <link rel="stylesheet" href="/styles/index.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#315391" />
     <meta
@@ -17,7 +16,12 @@
   </head>
   <body>
     <noscript>Serviço de marketing na internet</noscript>
-
+    <label for="switch" class="labelSwitch">
+      <input type="checkbox" id="switch" />
+      <span class="switch-background"></span>
+      <i class="fas fa-sun"></i>
+      <i class="fas fa-moon"></i>  
+    </label>  
     <div id="root"></div>
     <script type="module" src="/main.ts"></script>
   </body>
