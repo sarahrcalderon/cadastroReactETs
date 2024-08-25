@@ -2,6 +2,7 @@
     position: relative;
     display: flex;
     align-items: center;
+    margin-top: 8px;
     
 }
 .input-wrapper i {
@@ -40,6 +41,11 @@ input[type="password"] {
     font-size: 1rem;
 
 }
+.input-group {
+    position: relative;
+    margin-bottom: 1rem;
+    min-height: 60px; /* Define a altura mínima */
+}
 
 input.error {
     border-color: #f44336;
@@ -47,9 +53,14 @@ input.error {
 
 /* Error Message Styles */
 .error-message {
+    position: absolute;
     color: #f44336;
     font-size: 0.8rem;
-    margin-top: 0.25rem;
+    left:0;
+    font-size: 0.7rem;
+    margin-bottom: 50px
+
+    
 }
 
 

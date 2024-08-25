@@ -14,9 +14,9 @@
     --body-bg: #F2F2F2;
     --sun-color-light: #ff6600; /* Cor do sol no modo claro */
     --sun-color-dark: #a1a1a1;     /* Cor do sol no modo escuro */
-    --moon-color: #3d3d3d;   
+    --moon-color: #272727;   
     --switch-color: #f3f3f3;
-   
+   --moon-color-light: #a1a1a1;
 }
 .labelSwitch i.fa-sun {
     order: 1;
@@ -26,7 +26,7 @@
 .labelSwitch i.fa-moon {
     order: 2;
     font-size: 1rem;
-    color: var(--moon-color);
+    color: var(--moon-color-light);
 }
 
 .dark-mode {
