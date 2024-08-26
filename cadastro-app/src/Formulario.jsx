@@ -3,6 +3,8 @@ import { Button, TextField, FormControl, FormLabel, FormHelperText, Typography, 
 import PersonIcon from '@mui/icons-material/Person';
 import EmailIcon from '@mui/icons-material/Email';
 import LockIcon from '@mui/icons-material/Lock';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { useTheme } from '@mui/material/styles';
 
 const emailsIndisponiveis = ["teste@exemplo.com", "joao@exemplo.com", "maria@acme.net"];
@@ -19,6 +21,8 @@ const Formulario = () => {
     const [errors, setErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [showInfo, setShowInfo] = useState(false);
+    const [showSenha, setShowSenha] = useState(false);
+    const [showConfirmacaoSenha, setShowConfirmacaoSenha] = useState(false);
 
     const theme = useTheme();
     const mode = theme.palette.mode;
@@ -39,7 +43,7 @@ const Formulario = () => {
             errosDeValidacao.senha = 'Senha é obrigatória';
         } else {
             if (form.senha.length < 8) errosDeValidacao.senha = 'Senha deve ter no mínimo 8 caracteres';
-            if (!/[a-z]/.test(form.senha)) errosDeValidacao.senha += '- Conter pelo menos 1 letra minúscula e maiúscula';
+            if (!/[a-z]/.test(form.senha)) errosDeValidacao.senha += '- Conter pelo menos 1 letra minúscula';
             if (!/[A-Z]/.test(form.senha)) errosDeValidacao.senha += '- Conter pelo menos 1 letra maiúscula';
             if (!/[0-9]/.test(form.senha)) errosDeValidacao.senha += '- Conter pelo menos 1 número';
         }
@@ -92,11 +96,11 @@ const Formulario = () => {
     };
 
     const inputCadastro = (label, name, type = "text", icon, placeholder, error) => (
-        <FormControl style={{ marginBottom: '1rem' }}>
+        <FormControl style={{ marginBottom: '1rem' , position: 'relative'}}>
             <FormLabel>{label}</FormLabel>
             <TextField
                 name={name}
-                type={type}
+                type={name === 'senha' && !showSenha || name === 'confirmacaoSenha' && !showConfirmacaoSenha ? 'password' : 'text'}
                 value={form[name]}
                 onChange={handleChange}
                 onFocus={() => setShowInfo(name === 'senha')}
@@ -106,11 +110,26 @@ const Formulario = () => {
                     startAdornment: (
                         <InputAdornment
                             position="start"
-                            sx={{ color: mode === 'dark' ? '#0A0909' : '#ff6600', mr: 1 }} // Cor dos ícones
+                            sx={{ color: mode === 'dark' ? '#272727' : '#ff6600', mr: 1 }} // Cor dos ícones
                         >
                             {icon}
+                            {name === 'senha' || name === 'confirmacaoSenha' ? (
+                                <Button
+                                    onClick={() => {
+                                        if (name === 'senha') {
+                                            setShowSenha(!showSenha);
+                                        } else {
+                                            setShowConfirmacaoSenha(!showConfirmacaoSenha);
+                                        }
+                                    }}
+                                    sx={{ color: mode === 'dark' ? '#272727' : '#ff6600', p: 0 , ml: -2 }} // Cor do ícone
+                                >
+                                    {name === 'senha' ? (showSenha ? <VisibilityOffIcon /> : <VisibilityIcon />) : (showConfirmacaoSenha ? <VisibilityOffIcon /> : <VisibilityIcon />)}
+                                </Button>
+                            ) : null}
                         </InputAdornment>
                     ),
+                    endAdornment: name === 'senha' || name === 'confirmacaoSenha' ? null : null,
                 }}
                 placeholder={placeholder}
                 variant="outlined"
@@ -132,38 +151,41 @@ const Formulario = () => {
             )}
         </FormControl>
     );
-
+    
     return (
         <Paper
             elevation={3}
             component="form"
             onSubmit={handleSubmit}
             style={{
+                position: 'relative',
                 display: 'flex',
                 flexDirection: 'column',
                 gap: '1rem',
                 maxWidth: '400px',
                 margin: '0 auto',
-                marginTop: '10%',
+                marginTop: '5%',
                 padding: '2rem',
+                height: 'auto',
                 backgroundColor: mode === 'dark' ? '#121212' : '#fff', // Cor do fundo
             }}
         >
             <Typography variant="h4" component="h1" style={{ textAlign: 'center' }}>
                 Formulário de Cadastro
             </Typography>
-
+    
             {inputCadastro('Nome', 'nome', 'text', <PersonIcon />, 'Nome', errors.nome)}
             {inputCadastro('E-mail', 'email', 'email', <EmailIcon />, 'Digite seu e-mail', errors.email)}
             {inputCadastro('Senha', 'senha', 'password', <LockIcon />, '********', errors.senha)}
             {inputCadastro('Confirmação de Senha', 'confirmacaoSenha', 'password', <LockIcon />, '********', errors.confirmacaoSenha)}
-
+    
             <Button
                 type="submit"
                 disabled={isSubmitting}
                 variant="contained"
                 sx={{
                     backgroundColor: mode === 'dark' ? '#0A0909' : 'primary.main',
+                    height: '50px',
                     color: '#fff',
                     '&:hover': {
                         backgroundColor: mode === 'dark' ? '#0A0909' : 'primary.dark',

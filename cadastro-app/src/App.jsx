@@ -11,7 +11,6 @@ import './App.css';
 const App = () => {
   const [mode, setMode] = React.useState('light');
 
-  // Alterna entre modo claro e escuro
   const handleModeChange = () => {
     setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
   };
@@ -26,7 +25,9 @@ const App = () => {
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          padding: '3rem',
+          padding: '2rem',
+          height: '100vh',
+
         }}
       >
        <FormControlLabel
@@ -48,7 +49,7 @@ const App = () => {
               }}
             />
           }
-          label={mode === 'light' ? 'Modo Escuro' : 'Modo Claro'}
+          label={mode === 'light' ? '' : ''}
           sx={{
             color: mode === 'dark' ? '#F2F2F2' : 'inherit', // Cor do texto do label
           }}
